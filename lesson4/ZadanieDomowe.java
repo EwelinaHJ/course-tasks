@@ -1,6 +1,8 @@
+package lesson4;
+
 public class ZadanieDomowe {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
 
         int liczba = 76;
@@ -29,24 +31,11 @@ public class ZadanieDomowe {
         } else {
             System.out.println((cyferka + "jest nieparzysta"));
 
-        if ((((cyferka % 2) == 0) && ((cyferka % 5) == 0))) {
+            if ((((cyferka % 2) == 0) && ((cyferka % 5) == 0))) {
                 System.out.println(cyferka + "jest parzysta i dzieli się przez 5");
             } else {
                 System.out.println(cyferka + "jest nieparzysta i nie dzieli się przez 5");
             }
         }
-
-
-
     }
-
-
 }
-
-
-
-
-
-
-
-
