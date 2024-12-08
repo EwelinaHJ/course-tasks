@@ -1,11 +1,9 @@
 package lesson6;
 
 
-public class zadanienowe {
-
+public class ZadanieNowe {
     public static void main(String[] args) {
-
-        char miesiac = 10;
+        int miesiac = 7;
         switch (miesiac) {
             case 1:
                 System.out.println("Styczeń mamy zimę");
@@ -43,37 +41,16 @@ public class zadanienowe {
             case 12:
                 System.out.println("Grudzień mamy zimę");
                 break;
-
         }
-
-
-    }
-
-
-    public static class RokPrzestepny {
-        public static void main(String[] args) {
-
-            int rok = 2024;
-
-            if (rok < 1 || rok > 9999) {
-                System.out.println("Rok" + rok + " jest poza przyjętym zakresem");
+        int rok = 1999;
+        if (rok < 1 || rok > 9999) {
+            System.out.println("Rok" + rok + " jest poza przyjętym zakresem");
+        } else {
+            if ((rok % 4 == 0 && rok % 100 != 0) || (rok % 400 == 0)) {
+                System.out.println("Rok " + rok  + "jest rokiem przestępnym");
             } else {
-                if ((rok % 4 == 0 && rok % 100 != 0) || (rok % 400 == 0)) {
-                    System.out.println("Rok " + rok + "jest rokiem przestępnym");
-                } else {
-                    System.out.println("Rok" + rok + "jest rokiem nieprzestepnym");
-                }
+                System.out.println("Rok" + rok + "jest rokiem nieprzestepnym");
             }
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
