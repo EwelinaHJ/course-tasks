@@ -1,6 +1,7 @@
 package lesson8;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FirstSeleniumTest {
 
@@ -48,9 +51,14 @@ public class FirstSeleniumTest {
         search1.click();
 
         By addlocator = By.cssSelector("form#add-to-cart-or-refresh");
-        WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(addlocator));
-        String confirmationText = confirmationMessage.getText();
-        System.out.println("Potwierdzenie: " + confirmationText);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addlocator));
+        //String confirmationText = driver.findElement(addlocator).getText();
+        //String modalTitle = driver.findElement(modalTitleLocator).getText();
+        //Assertions.assertTrue(confirmationText.contains("Product successfully added to your shopping cart"));;\
+
+        String confirmationText = driver.findElement(addlocator).getText();
+        System.out.println("Confirmation Text: " + confirmationText);
+        Assertions.assertTrue(confirmationText.contains("ADD TO CART"));
 
         driver.quit();
     }
@@ -71,6 +79,7 @@ public class FirstSeleniumTest {
         WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(addlocator));
         String confirmationText = confirmationMessage.getText();
         System.out.println("Potwierdzenie: " + confirmationText);
+        Assertions.assertTrue(confirmationText.contains("You have successfully subscribed to this newsletter"));
     }
 
     @AfterEach
