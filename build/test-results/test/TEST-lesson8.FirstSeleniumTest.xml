@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lesson8.FirstSeleniumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-06T19:55:10" hostname="LAPTOP-MFG5LPGE" time="14.866">
-  <properties/>
-  <testcase name="addToNewsletter()" classname="lesson8.FirstSeleniumTest" time="14.866"/>
-  <system-out><![CDATA[Potwierdzenie: You have successfully subscribed to this newsletter.
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
