@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class FirstSeleniumTest {
 
@@ -24,7 +24,7 @@ public class FirstSeleniumTest {
     public void BeforeEach() {
 
         driver = new ChromeDriver();
-        Duration timeToWait = Duration.ofSeconds(10);
+        Duration timeToWait = Duration.ofSeconds(15);
         driver.manage().timeouts().implicitlyWait(timeToWait);
         driver.get("https://demo.prestashop.com/#/en/front");
         By iframe = By.id("framelive");
@@ -36,31 +36,34 @@ public class FirstSeleniumTest {
     @Test
     public void addToCartTest() {
 
-        By locator = By.cssSelector("input.ui-autocomplete-input");
-        WebElement search = driver.findElement(locator);
-        search.sendKeys("sweater");
-        search.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        By locator = By.cssSelector(".ui-autocomplete-input");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement product = driver.findElement(locator);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        By menulocator = By.cssSelector("li.ui-menu-item");
-        WebElement firstResult = wait.until(ExpectedConditions.visibilityOfElementLocated(menulocator));
-        firstResult.click();
+        product.sendKeys("sweater");
+        product.click();
 
-        By lokator2 = By.cssSelector(".btn.btn-primary");
-        WebElement search1 = driver.findElement(lokator2);
-        search1.click();
+        By menuLocator = By.cssSelector("li.ui-menu-item");
+        WebElement choiceProduct = wait.until(ExpectedConditions.visibilityOfElementLocated(menuLocator));
+        choiceProduct.click();
 
-        By addlocator = By.cssSelector("form#add-to-cart-or-refresh");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(addlocator));
-        //String confirmationText = driver.findElement(addlocator).getText();
-        //String modalTitle = driver.findElement(modalTitleLocator).getText();
-        //Assertions.assertTrue(confirmationText.contains("Product successfully added to your shopping cart"));;\
+        By addToCartLocator = By.cssSelector(".product-add-to-cart");
+        WebElement addToCart = wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartLocator));
+        addToCart.click();
 
-        String confirmationText = driver.findElement(addlocator).getText();
-        System.out.println("Confirmation Text: " + confirmationText);
-        Assertions.assertTrue(confirmationText.contains("ADD TO CART"));
+        By modalLocator = By.cssSelector("#blockcart-modal");
+        WebElement modalConfirmation = wait.until(ExpectedConditions.elementToBeClickable(modalLocator));
 
-        driver.quit();
+        By confirmationTextLocator = By.cssSelector("#myModalLabel");
+        WebElement confirmationTextElement =wait.until(ExpectedConditions.elementToBeClickable(confirmationTextLocator));
+        String confirmationText = confirmationTextElement .getText();
+        System.out.println("Confirmation Text:" + confirmationText );
+
+        String expectedText ="Product successfully added to your shopping cart";
+
+        Assertions.assertTrue(confirmationText.contains(expectedText), "Text not found");
+
     }
 
     @Test
