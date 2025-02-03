@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,21 +15,24 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FunctionalityOfCart {
+public class FunctionalityOfCartTests {
 
     @Test
-    public void addingProductToCart() {
+    public void addingProductToCarttest() {
 
         ChromeDriver driver = new ChromeDriver();
-        Duration timeToWait = Duration.ofSeconds(40);
+        Duration timeToWait = Duration.ofSeconds(20);
         driver.manage().timeouts().implicitlyWait(timeToWait);
         driver.get("https://demo.prestashop.com/#/en/front");
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By productLocator = By.xpath("//article[@data-id-product='1']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
@@ -45,11 +49,13 @@ public class FunctionalityOfCart {
         String expectedText = "Product successfully added to your shopping cart";
 
         assertTrue(confirmationText.contains(expectedText), "Text not found");
+
+        driver.quit();
     }
 
 
     @Test
-    public void quanityOfProduct() {
+    public void quanityOfProductTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -58,8 +64,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -84,10 +94,12 @@ public class FunctionalityOfCart {
         int expectedCount = 1;
 
         assertEquals(expectedCount, itemCount, "Liczba w koszyku jest niezgodna z oczekiwaną");
+
+        driver.quit();
     }
 
     @Test
-    public void removingTheProduct() {
+    public void removingTheProductTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -96,8 +108,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -121,11 +137,13 @@ public class FunctionalityOfCart {
         By emptyCartMessage = By.cssSelector(".cart-overview.js-cart .no-items");
         WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(emptyCartMessage));
         assertEquals("There are no more items in your cart", message.getText().trim());
+
+        driver.quit();
     }
 
 
     @Test
-    public void proceedToCheckout() {
+    public void proceedToCheckoutTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -134,8 +152,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -160,10 +182,11 @@ public class FunctionalityOfCart {
         WebElement checkoutForm = wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutFormLocator));
         Assertions.assertTrue(checkoutForm.isDisplayed());
 
+        driver.quit();
     }
 
     @Test
-    public void priseChecking() {
+    public void priseCheckingTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -172,8 +195,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -203,11 +230,13 @@ public class FunctionalityOfCart {
         System.out.println("Cena aktualna produktu wynosi:" + actualPrice);
         assertEquals("45.89", actualPrice);
 
+        driver.quit();
+
     }
 
     @Test
 
-    public void homePageChecking() throws InterruptedException {
+    public void homePageCheckingTest() throws InterruptedException {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -216,8 +245,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -247,9 +280,11 @@ public class FunctionalityOfCart {
         WebElement productInCart = wait.until(ExpectedConditions.visibilityOfElementLocated(productNameInCart));
         assertEquals("Hummingbird printed t-shirt", productInCart.getText());
 
+        driver.quit();
+
     }
     @Test
-    public void refreshingPage() {
+    public void refreshingPageTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -258,9 +293,12 @@ public class FunctionalityOfCart {
         By iframe = By.id("framelive");
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
-
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By productLocator = By.xpath("//article[@data-id-product='1']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
@@ -279,6 +317,9 @@ public class FunctionalityOfCart {
         By cartProductLocator = By.cssSelector(".cart-products-count");
         WebElement cartCount = wait.until(ExpectedConditions.visibilityOfElementLocated(cartProductLocator));
         assertEquals("(1)", cartCount.getText());
+
+        driver.quit();
+
     }
 
 }

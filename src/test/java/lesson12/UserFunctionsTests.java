@@ -3,18 +3,18 @@ package lesson12;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class UserFunctions {
+public class UserFunctionsTests {
 
     @Test
-    public void newUserRegistration() {
+    public void newUserRegistrationTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -24,6 +24,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -84,10 +88,12 @@ public class UserFunctions {
         String confirmationText = confirmation.getText();
         System.out.println("Zalogowany użytkownik:" + confirmationText);
 
+        driver.quit();
+
     }
 
     @Test
-    public void loginCorrectData() {
+    public void loginCorrectDataTest() {
 
 
         ChromeDriver driver = new ChromeDriver();
@@ -98,6 +104,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -116,10 +126,12 @@ public class UserFunctions {
         By signInBlue = By.cssSelector("#submit-login");
         WebElement signInBlueButton = wait.until(ExpectedConditions.elementToBeClickable(signInBlue));
         signInBlueButton.click();
+
+        driver.quit();
     }
 
     @Test
-    public void fieldlessRegistration() {
+    public void fieldlessRegistrationTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -129,6 +141,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -195,10 +211,12 @@ public class UserFunctions {
         System.out.println("Błąd nazwiska: " + lastnameErrorMessage.getText());
         System.out.println("Błąd daty urodzenia: " + birthdateErrorMessage.getText());
 
+        driver.quit();
+
     }
 
     @Test
-    public void loginIncorrectData() {
+    public void loginIncorrectDataTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -208,6 +226,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -230,10 +252,11 @@ public class UserFunctions {
         String loginInvalidText = confirmationText.getText();
         System.out.println("Tekst po błędnym zalogowaniu:" + loginInvalidText);
 
+        driver.quit();
     }
 
     @Test
-    public void passwordReset() {
+    public void passwordResetTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -243,6 +266,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -266,11 +293,13 @@ public class UserFunctions {
 
         System.out.println("Informacja po resecie:" + confirmationMessage);
 
+        driver.quit();
+
     }
 
     @Test
 
-    public void loginWithoutCompletedFields() {
+    public void loginWithoutCompletedFieldsTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -280,6 +309,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class=\'hidden-sm-down\'][contains(text(), \'Sign in\')]");
         WebElement singInButton = driver.findElement(signIn);
@@ -297,10 +330,12 @@ public class UserFunctions {
         WebElement password = driver.findElement(passwordField);
         Assertions.assertEquals("true", password.getAttribute("required"));
 
+        driver.quit();
+
     }
 
     @Test
-    public void checkIfPasswordIsMasked() {
+    public void checkIfPasswordIsMaskedTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
@@ -310,6 +345,10 @@ public class UserFunctions {
         WebElement iframeObject = driver.findElement(iframe);
         driver.switchTo().frame(iframeObject);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By signIn = By.xpath("//span[@class='hidden-sm-down'][contains(text(), 'Sign in')]");
         wait.until(ExpectedConditions.elementToBeClickable(signIn)).click();
@@ -325,11 +364,13 @@ public class UserFunctions {
 
         System.out.println("Typ pola: " + inputType);
         System.out.println("Wprowadzona wartość: " + enteredValue);
+
+        driver.quit();
     }
 
 
         @Test
-        public void checkShowPasswordButton() {
+        public void checkShowPasswordButtonTest() {
             ChromeDriver driver = new ChromeDriver();
             Duration timeToWait = Duration.ofSeconds(40);
             driver.manage().timeouts().implicitlyWait(timeToWait);
@@ -339,6 +380,10 @@ public class UserFunctions {
             WebElement iframeObject = driver.findElement(iframe);
             driver.switchTo().frame(iframeObject);
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+            By spinnerLocator = By.id("loadingMessage");
+            ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+            wait.until(elementInvisible);
 
             By signIn = By.xpath("//span[@class='hidden-sm-down'][contains(text(), 'Sign in')]");
             wait.until(ExpectedConditions.elementToBeClickable(signIn)).click();
@@ -360,6 +405,7 @@ public class UserFunctions {
 
             System.out.println("Test przebiegł pomyślnie - przycisk show password działa prawidłowo");
 
+            driver.quit();
         }
     }
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class FunctionalityTests {
 
     @Test
-    public void filteringByCategory() {
+    public void filteringByCategoryTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(25);
@@ -28,6 +29,11 @@ public class FunctionalityTests {
         driver.switchTo().frame(iframeObject);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
+
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
@@ -45,10 +51,12 @@ public class FunctionalityTests {
         String expectedText = "Categories: Accessories";
 
         Assertions.assertTrue(confirmationText.contains(expectedText), "Text not found");
+
+        driver.quit();
     }
 
     @Test
-    public void filteringByPrice() {
+    public void filteringByPriceTest() {
 
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -58,6 +66,10 @@ public class FunctionalityTests {
 
         WebElement iframeObject = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("framelive")));
         driver.switchTo().frame(iframeObject);
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By allProductsLocator = By.cssSelector(".all-product-link");
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
@@ -78,8 +90,8 @@ public class FunctionalityTests {
         } while (!sliderValue.equals("€16.00 - €44.00"));
 
 
-        By spinnerLocator = By.cssSelector(".spinner");
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(spinnerLocator));
+        By spinnerLocator1 = By.cssSelector(".spinner");
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(spinnerLocator1));
 
         By productContainer = By.cssSelector(".product");
         wait.until(ExpectedConditions.numberOfElementsToBe(productContainer, 10));
@@ -100,7 +112,8 @@ public class FunctionalityTests {
     }
 
     @Test
-    public void filterReset() {
+    public void filterResetTest() {
+
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(30);
         driver.manage().timeouts().implicitlyWait(timeToWait);
@@ -108,6 +121,10 @@ public class FunctionalityTests {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("framelive")));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By allProductsLocator = By.cssSelector(".all-product-link");
         wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator)).click();
@@ -175,7 +192,7 @@ public class FunctionalityTests {
     }
 
     @Test
-    public void checkTwoFiltersVisibility() {
+    public void checkTwoFiltersVisibilityTest() {
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(25);
         driver.manage().timeouts().implicitlyWait(timeToWait);
@@ -183,6 +200,10 @@ public class FunctionalityTests {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("framelive")));
+
+        By spinnerLocator = By.id("loadingMessage");
+        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
+        wait.until(elementInvisible);
 
         By allProductsLocator = By.cssSelector(".all-product-link");
         wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator)).click();
