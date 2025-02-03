@@ -74,7 +74,7 @@ public class FunctionalityOfCartTests {
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
 
-        By productLocator = By.xpath("//h2[@class=\"h3 product-title\"]/a[contains(text(), \"Hummingbird printed t-shirt\")]");
+        By productLocator = By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
 
@@ -82,11 +82,11 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
-        By quantitiyLocator = By.xpath("//input[@class=\"js-cart-line-product-quantity form-control\"]");
+        By quantitiyLocator = By.cssSelector(".input-group input");
         WebElement cartItemCountElement = driver.findElement(quantitiyLocator);
 
         String itemCountText = cartItemCountElement.getAttribute("value");
@@ -118,7 +118,7 @@ public class FunctionalityOfCartTests {
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
 
-        By productLocator = By.xpath("//h2[@class=\"h3 product-title\"]/a[contains(text(), \"Hummingbird printed t-shirt\")]");
+        By productLocator = By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
 
@@ -126,7 +126,7 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
@@ -162,7 +162,7 @@ public class FunctionalityOfCartTests {
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
 
-        By productLocator = By.xpath("//h2[@class=\"h3 product-title\"]/a[contains(text(), \"Hummingbird printed t-shirt\")]");
+        By productLocator = By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
 
@@ -170,7 +170,7 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
@@ -205,7 +205,7 @@ public class FunctionalityOfCartTests {
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
 
-        By productLocator = By.xpath("//h2[@class=\"h3 product-title\"]/a[contains(text(), \"Hummingbird printed t-shirt\")]");
+        By productLocator = By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
 
@@ -213,7 +213,7 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
@@ -255,7 +255,7 @@ public class FunctionalityOfCartTests {
         WebElement allProductButton = wait.until(ExpectedConditions.elementToBeClickable(allProductsLocator));
         allProductButton.click();
 
-        By productLocator = By.xpath("//h2[@class=\"h3 product-title\"]/a[contains(text(), \"Hummingbird printed t-shirt\")]");
+        By productLocator =By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");
         WebElement product1Choice = wait.until(ExpectedConditions.elementToBeClickable(productLocator));
         product1Choice.click();
 
@@ -263,7 +263,7 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
@@ -307,7 +307,7 @@ public class FunctionalityOfCartTests {
         WebElement addToCart = wait.until(ExpectedConditions.elementToBeClickable(addToCartLokator));
         addToCart.click();
 
-        By proceedToCheckoutLocator = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
+        By proceedToCheckoutLocator = By.cssSelector(".cart-content a");
         WebElement proceedToCheckoutButton = wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutLocator));
         proceedToCheckoutButton.click();
 
@@ -323,8 +323,3 @@ public class FunctionalityOfCartTests {
     }
 
 }
-
-
-
-
-
