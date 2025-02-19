@@ -26,43 +26,36 @@ public class FunctionalityOfCartTests{
     private ActiveFiltres activeFiltres;
     private Navigation navigation;
     private Cart cart;
+    private SetUp setUp;
 
+    public FunctionalityOfCartTests() {
+        this.driver = new ChromeDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.productGrid = new ProductGrid(driver);
+        this.filters = new Filters(driver);
+        this.activeFiltres = new ActiveFiltres(driver);
+        this.navigation = new Navigation(driver);
+        this.cart = new Cart(driver);
+        this.setUp = new SetUp(driver);
+    }
 
     @BeforeEach
     public void beforeEach() {
-        driver = new ChromeDriver();
-        Duration timeToWait = Duration.ofSeconds(30);
-        driver.manage().timeouts().implicitlyWait(timeToWait);
-        driver.get("https://demo.prestashop.com/#/en/front");
-        By iframe = By.id("framelive");
-        WebElement iframeObject = driver.findElement(iframe);
-        driver.switchTo().frame(iframeObject);
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-        By spinnerLocator = By.id("loadingMessage");
-        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
-        wait.until(elementInvisible);
+        setUp.settings();
     }
 
     @Test
     public void addingProductToCartTest() {
-        productGrid = new ProductGrid(driver);
-        productGrid.selectProduct();
-        cart = new Cart(driver);
 
+        productGrid.selectProduct();
         cart.addingProductToCart();
         cart.confirmationAfterAddingToCart();
-
         String expectedText = "Product successfully added to your shopping cart";
         assertTrue(cart.confirmationAfterAddingToCart().contains(expectedText), "Text not found");
     }
 
     @Test
     public void quantityOfProductTest() {
-
-        productGrid = new ProductGrid(driver);
-        cart = new Cart(driver);
 
         productGrid.clickOnAllProductsButton();
         productGrid.selectTshirt();
@@ -77,9 +70,6 @@ public class FunctionalityOfCartTests{
     @Test
     public void removingTheProductTest() {
 
-    productGrid = new ProductGrid(driver);
-    cart = new Cart(driver);
-
     productGrid.clickOnAllProductsButton();
     productGrid.selectTshirt();
     cart.addingProductToCart();
@@ -93,9 +83,6 @@ public class FunctionalityOfCartTests{
     @Test
     public void proceedToCheckoutTest() {
 
-        productGrid = new ProductGrid(driver);
-        cart = new Cart(driver);
-
         productGrid.clickOnAllProductsButton();
         productGrid.selectTshirt();
         cart.addingProductToCart();
@@ -108,9 +95,6 @@ public class FunctionalityOfCartTests{
 
     @Test
     public void priseCheckingTest() {
-
-        productGrid = new ProductGrid(driver);
-        cart = new Cart(driver);
 
         productGrid.clickOnAllProductsButton();
         productGrid.selectTshirt();
@@ -127,9 +111,6 @@ public class FunctionalityOfCartTests{
 
     public void homePageCheckingTest() throws InterruptedException {
 
-        productGrid = new ProductGrid(driver);
-        cart = new Cart(driver);
-
         productGrid.clickOnAllProductsButton();
         productGrid.selectTshirt();
         cart.addingProductToCart();
@@ -143,10 +124,6 @@ public class FunctionalityOfCartTests{
     }
     @Test
     public void refreshingPageTest() {
-
-        productGrid = new ProductGrid(driver);
-        cart = new Cart(driver);
-        navigation= new Navigation(driver);
 
         productGrid.selectProduct();
         cart.addingProductToCart();

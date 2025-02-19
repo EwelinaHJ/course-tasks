@@ -11,10 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobejctpattern.tests.pages.ActiveFiltres;
-import pageobejctpattern.tests.pages.Filters;
-import pageobejctpattern.tests.pages.Navigation;
-import pageobejctpattern.tests.pages.ProductGrid;
+import pageobejctpattern.tests.pages.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -28,30 +25,26 @@ public class FunctionalityTests {
     private Filters filters;
     private ActiveFiltres activeFiltres;
     private Navigation navigation;
+    private SetUp setUp;
+
+
+    public FunctionalityTests() {
+        this.driver = new ChromeDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.productGrid = new ProductGrid(driver);
+        this.filters = new Filters(driver);
+        this.activeFiltres = new ActiveFiltres(driver);
+        this.navigation = new Navigation(driver);
+        this.setUp = new SetUp(driver);
+    }
 
 
     @BeforeEach
     public void beforeEach() {
-        driver = new ChromeDriver();
-        Duration timeToWait = Duration.ofSeconds(30);
-        driver.manage().timeouts().implicitlyWait(timeToWait);
-        driver.get("https://demo.prestashop.com/#/en/front");
-        By iframe = By.id("framelive");
-        WebElement iframeObject = driver.findElement(iframe);
-        driver.switchTo().frame(iframeObject);
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-        By spinnerLocator = By.id("loadingMessage");
-        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
-        wait.until(elementInvisible);
+        setUp.settings();
     }
     @Test
     public void filteringByCategoryTest() {
-
-        productGrid = new ProductGrid(driver);
-        filters = new Filters(driver);
-        activeFiltres = new ActiveFiltres(driver);
 
         productGrid.clickOnAllProductsButton();
         filters.selectAccessoriesFIlter();
@@ -63,9 +56,6 @@ public class FunctionalityTests {
 
     @Test
     public void filteringByPriceTest() {
-        productGrid = new ProductGrid(driver);
-        filters = new Filters(driver);
-        activeFiltres = new ActiveFiltres(driver);
 
         productGrid.clickOnAllProductsButton();
         filters.selectPriceFilter();
@@ -74,16 +64,10 @@ public class FunctionalityTests {
         List<WebElement> allProducts = activeFiltres.getAllProducts();
 
         Assertions.assertEquals(10, allProducts.size(), "Nieprawidłowa liczba produktów po filtrowaniu");
-
     }
 
     @Test
     public void filterResetTest() {
-
-        productGrid = new ProductGrid(driver);
-        filters = new Filters(driver);
-        activeFiltres = new ActiveFiltres(driver);
-        navigation = new Navigation(driver);
 
         productGrid.clickOnAllProductsButton();
         int sumOfAllProducts = productGrid.totalProductsCounter();
@@ -107,10 +91,6 @@ public class FunctionalityTests {
     }
         @Test
     public void checkTwoFiltersVisibilityTest() {
-
-        productGrid = new ProductGrid(driver);
-        filters = new Filters(driver);
-        activeFiltres = new ActiveFiltres(driver);
 
         productGrid.clickOnAllProductsButton();
         filters.selectFilterAccessories();

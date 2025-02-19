@@ -11,8 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobejctpattern.tests.pages.Navigation;
-import pageobejctpattern.tests.pages.Registration;
+import pageobejctpattern.tests.pages.*;
 
 import java.time.Duration;
 
@@ -23,29 +22,22 @@ public class UserFunctionsTests {
 
     private Registration registration;
     private Navigation navigation;
+    private SetUp setUp;
+
+    public UserFunctionsTests() {
+        this.driver = new ChromeDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.registration = new Registration(driver);
+        this.navigation = new Navigation(driver);
+        this.setUp = new SetUp(driver);
+    }
 
     @BeforeEach
     public void beforeEach() {
-        driver = new ChromeDriver();
-        Duration timeToWait = Duration.ofSeconds(30);
-        driver.manage().timeouts().implicitlyWait(timeToWait);
-        driver.get("https://demo.prestashop.com/#/en/front");
-        By iframe = By.id("framelive");
-        WebElement iframeObject = driver.findElement(iframe);
-        driver.switchTo().frame(iframeObject);
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-        By spinnerLocator = By.id("loadingMessage");
-        ExpectedCondition elementInvisible = ExpectedConditions.invisibilityOfElementLocated(spinnerLocator);
-        wait.until(elementInvisible);
+        setUp.settings();
     }
-
     @Test
     public void newUserRegistrationTest() {
-
-        registration = new Registration(driver);
-        navigation = new Navigation(driver);
 
         registration.signInButton();
         registration.createAccountFieldClick();
@@ -60,7 +52,6 @@ public class UserFunctionsTests {
     @Test
     public void loginCorrectDataTest() {
 
-        registration = new Registration(driver);
         registration.signInButton();
         registration.loginWriteEmail();
         registration.loginWritePassword();
@@ -72,9 +63,6 @@ public class UserFunctionsTests {
 
     @Test
     public void fieldlessRegistrationTest() {
-
-        registration = new Registration(driver);
-        navigation = new Navigation(driver);
 
         registration.signInButton();
         registration.createAccountFieldClick();
@@ -94,8 +82,6 @@ public class UserFunctionsTests {
     @Test
     public void loginIncorrectDataTest() {
 
-        registration = new Registration(driver);
-
         registration.signInButton();
         registration.correctEmailField();
         registration.incorrectPasswordField();
@@ -110,7 +96,6 @@ public class UserFunctionsTests {
     @Test
     public void passwordResetTest() {
 
-        registration = new Registration(driver);
         registration.signInButton();
         registration.forgotPasswordField();
         registration.emailFieldToResetPassword();
@@ -126,8 +111,6 @@ public class UserFunctionsTests {
 
     public void loginWithoutCompletedFieldsTest() {
 
-        registration = new Registration(driver);
-
         registration.signInButton();
         registration.signInBlueButton();
         registration.emptyEmailField();
@@ -140,8 +123,6 @@ public class UserFunctionsTests {
 
     @Test
     public void checkIfPasswordIsMaskedTest() {
-
-        registration = new Registration(driver);
 
         registration.signInButton();
         registration.emptyPasswordField();
@@ -157,7 +138,6 @@ public class UserFunctionsTests {
     @Test
     public void checkShowPasswordButtonTest() {
 
-        registration = new Registration(driver);
         registration.signInButton();
         registration.emptyPasswordField();
         registration.emptyPasswordField().sendKeys("TestPassword123!");
