@@ -9,24 +9,28 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static cucumber.DriverProvider.driver;
+import static cucumber.DriverProvider.getDriverInstance;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FunctionalityOfCartsCucumber {
 
-    ChromeDriver driver = new ChromeDriver();
-    private SetUp setUp = new SetUp(driver);
-    private ProductGrid productGrid = new ProductGrid(driver);
-    private Cart cart = new Cart(driver);
-    private Navigation navigation = new Navigation(driver);
+
+    private final SetUp setUp = new SetUp(getDriverInstance());
+    private final  ProductGrid productGrid = new ProductGrid(getDriverInstance());
+    private final Cart cart = new Cart(getDriverInstance());
+    private final Navigation navigation = new Navigation(getDriverInstance());
 
     @Given("Page is open")
     public void pageIsOpen() {
-
+       getDriverInstance();
         setUp.settings();
     }
+
     @When("I select a product from the product list")
     public void iSelectAProductFromTheProductList() {
         productGrid.selectProduct();
