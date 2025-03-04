@@ -5,24 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import static cucumber.DriverProvider.getDriverInstance;
+
 
 public class ProductGrid {
 
-    private final WebDriverWait wait;
-    WebDriver driver;
+    private WebDriver driver = getDriverInstance();
+    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     private By totalProductsCounter  = By.cssSelector(".total-products");
     private By productBox =  By.cssSelector(".product");
     private String totalProductsText = "There are 19 products.";
     private By currentPage =  By.cssSelector(".page-list .current");
     private By nextPageButton = By.cssSelector("li a[rel='next']");
 
-    public ProductGrid(WebDriver driver) {
-
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    }
 
     public void clickOnAllProductsButton() {
 

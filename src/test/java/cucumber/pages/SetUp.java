@@ -6,19 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import static cucumber.DriverProvider.getDriverInstance;
+
 
 public class SetUp {
 
-    private final WebDriverWait wait;
-    WebDriver driver;
+    private final WebDriver driver = getDriverInstance();
 
-    public SetUp (WebDriver driver) {
 
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    }
     public void settings () {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         driver.get("https://demo.prestashop.com/#/en/front");

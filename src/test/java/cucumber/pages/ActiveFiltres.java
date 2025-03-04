@@ -5,34 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import static cucumber.DriverProvider.getDriverInstance;
+
 
 public class ActiveFiltres {
 
-    private final WebDriverWait wait;
-    WebDriver driver;
+    private final WebDriver driver = getDriverInstance();
+    private final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-
-    public ActiveFiltres(WebDriver driver) {
-
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    }
 
     public String getActiveFilter() {
 
         By activeFiltresLocator = By.cssSelector(".filter-block");
         WebElement confirmationTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(activeFiltresLocator));
-        String confirmationText;
-        return confirmationText = confirmationTextElement.getText();
+
+        return confirmationTextElement.getText();
     }
 
     public List<String> getFilteredProductsByPrice() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         By productContainer = By.cssSelector(".product");
         wait.until(ExpectedConditions.numberOfElementsToBe(productContainer, 10));
 
@@ -73,4 +67,3 @@ public class ActiveFiltres {
         return isRuledFilterVisible;
     }
 }
-

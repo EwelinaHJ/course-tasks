@@ -6,20 +6,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import static cucumber.DriverProvider.getDriverInstance;
+
 
 public class Filters {
 
-    private final WebDriverWait wait;
-    WebDriver driver;
+    private final WebDriver driver = getDriverInstance();
+    private final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-    public Filters(WebDriver driver) {
-
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
+    public Filters () {
     }
+
     public void selectAccessoriesFIlter() {
 
         By categoryLocator = By.xpath("//label[@class='facet-label']//a[contains(text(), \"Accessories\")]");
@@ -55,4 +53,3 @@ public class Filters {
         wait.until(ExpectedConditions.elementToBeClickable(categoryLocator)).click();
     }
 }
-
