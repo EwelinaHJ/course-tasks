@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FunctionalityOfCartTests {
 
     @Test
-    public void addingProductToCarttest() {
+    public void addingProductToCartTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(20);
