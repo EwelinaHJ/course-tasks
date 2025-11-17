@@ -10,6 +10,7 @@ public interface Creature {
         return getHealth() > 0;
     }
 
+
     int getHealth();
 }
 

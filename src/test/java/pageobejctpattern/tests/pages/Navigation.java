@@ -35,6 +35,7 @@ public class Navigation {
 
     public void goingToSecondPage(){
 
+
         By nextPageButton = By.cssSelector("li a[rel='next']");
         wait.until(ExpectedConditions.elementToBeClickable(nextPageButton)).click();
         By productBox = By.cssSelector(".product");

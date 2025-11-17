@@ -35,6 +35,7 @@ public class Cart {
         return confirmationText;
     }
 
+
     public void proceedToCheckoutButton (){
 
         By proceedToCheckoutLocator = By.cssSelector(".cart-content a");

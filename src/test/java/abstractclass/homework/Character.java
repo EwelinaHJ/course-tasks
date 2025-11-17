@@ -12,7 +12,6 @@ public abstract class Character implements Creature{
 
     public abstract void takeDamage();
 
-
     public abstract void heal();
 
 

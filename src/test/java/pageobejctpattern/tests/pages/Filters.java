@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Filters {
+public class
+Filters {
 
     private final WebDriverWait wait;
     WebDriver driver;
@@ -31,6 +32,7 @@ public class Filters {
     public void selectPriceFilter() {
 
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".faceted-slider")));
+
 
         Actions actions = new Actions(driver);
         String sliderValue;

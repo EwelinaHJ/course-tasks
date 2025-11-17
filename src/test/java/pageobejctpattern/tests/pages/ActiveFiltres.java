@@ -36,6 +36,7 @@ public class ActiveFiltres {
         By productContainer = By.cssSelector(".product");
         wait.until(ExpectedConditions.numberOfElementsToBe(productContainer, 10));
 
+
         List<WebElement> allProducts = driver.findElements(productContainer);
         List<String> pricesInOrder = new ArrayList<>();
         for (WebElement product : allProducts) {

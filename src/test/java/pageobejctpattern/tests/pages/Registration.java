@@ -34,6 +34,7 @@ public class Registration {
 
     public void createAccountFillingOutForm(){
 
+
         By mrs = By.xpath("//label[@class=\'radio-inline\'][@for=\'field-id_gender-2\']");
         WebElement genderChoice = driver.findElement(mrs);
         genderChoice.click();

@@ -10,7 +10,6 @@ public class Mage extends Character{
     public void takeDamage() {
 
     }
-
     @Override
     public void heal() {
 

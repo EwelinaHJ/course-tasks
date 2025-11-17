@@ -77,6 +77,7 @@ public class FunctionalityOfCartTests{
     cart.removingProduct();
     cart.confirmationOfProductRemoval();
 
+
         assertEquals("There are no more items in your cart", cart.confirmationOfProductRemoval().getText().trim());
     }
 

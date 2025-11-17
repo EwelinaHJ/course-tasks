@@ -38,6 +38,7 @@ public class ProductGrid {
         product1Choice.click();
     }
 
+
     public void selectTshirt(){
 
         By productLocator = By.cssSelector(".h3 a[href*=\'hummingbird-printed-t-shirt\']");

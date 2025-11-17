@@ -395,6 +395,7 @@ public class UserFunctionsTests {
             By showPasswordButton = By.xpath("//span[@class=\'input-group-btn\']/button");
             WebElement showPassword = wait.until(ExpectedConditions.elementToBeClickable(showPasswordButton));
 
+
             Assertions.assertEquals("password", password.getAttribute("type"));
 
             showPassword.click();

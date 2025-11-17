@@ -49,6 +49,7 @@ public class UserFunctionsTests {
         Assertions.assertTrue(registration.loggedInUser().contains(expectedUsername));
     }
 
+
     @Test
     public void loginCorrectDataTest() {
 
