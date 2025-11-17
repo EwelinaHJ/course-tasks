@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class UserFunctionsTests {
 
     @Test
@@ -95,7 +96,6 @@ public class UserFunctionsTests {
 
     @Test
     public void loginCorrectDataTest() {
-
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);

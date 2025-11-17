@@ -193,6 +193,7 @@ public class FunctionalityTests {
 
     @Test
     public void checkTwoFiltersVisibilityTest() {
+
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(25);
         driver.manage().timeouts().implicitlyWait(timeToWait);

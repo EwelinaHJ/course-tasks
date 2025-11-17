@@ -101,6 +101,7 @@ public class FunctionalityOfCartTests {
     @Test
     public void removingTheProductTest() {
 
+
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
         driver.manage().timeouts().implicitlyWait(timeToWait);
