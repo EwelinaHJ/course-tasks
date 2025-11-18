@@ -15,10 +15,11 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class FunctionalityOfCartTests {
 
     @Test
-    public void addingProductToCarttest() {
+    public void addingProductToCartTest() {
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(20);
@@ -100,6 +101,7 @@ public class FunctionalityOfCartTests {
 
     @Test
     public void removingTheProductTest() {
+
 
         ChromeDriver driver = new ChromeDriver();
         Duration timeToWait = Duration.ofSeconds(40);
