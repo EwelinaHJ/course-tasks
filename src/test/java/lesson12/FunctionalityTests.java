@@ -163,6 +163,7 @@ public class FunctionalityTests {
         By categoryLocator = By.xpath("//label[@class='facet-label']//a[contains(text(), 'Accessories')]");
         wait.until(ExpectedConditions.elementToBeClickable(categoryLocator)).click();
 
+
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(totalProductsCounter, totalProductsText)));
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productBox));
         int filteredProductCount = driver.findElements(productBox).size();

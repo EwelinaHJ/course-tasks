@@ -15,6 +15,7 @@ import java.time.Duration;
 public class UserFunctionsTests {
 
     @Test
+
     public void newUserRegistrationTest() {
 
         ChromeDriver driver = new ChromeDriver();
